@@ -1,0 +1,29 @@
+
+{% extends "todo/base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            <h4>Enjoy your reading</h4>
+        </div>
+    </div>
+    <p class="row justify-content-center mt-5">
+        <p class="col-md-5">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+        </p>
+            {% endif %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">    <b><label for="title">{{ todo.title }}</label></b> </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">    <p>{{ todo.memo }}</p>  </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5"><input onclick="this.value='Liked!'" type="button" class="btn btn-success" value="Like" id="myButton1" /> </div>
+</div>
+
+{% endblock %}

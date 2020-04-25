@@ -1,0 +1,51 @@
+{% extends "todo/base.html" %}
+
+{% block content %}
+<br>
+    <br>
+    <br>
+    <br>
+    <br>
+<div class="row justify-content-center mt-5">
+        <div class="col-md-7 text-center">
+
+                 <h1>Write to Inspire! Write to Express! </h1>
+            <p> Writing is <i>empowering</i>, and not just because <b>it's fun</b> to tap into that
+                creative vein and be amazed by the riches there. Writing calls upon us to bring our left and
+                right brain together to <b><i>shape experience and feeling into something another person can read
+                    and understand</i></b>. That need, to feel understood, to know that what one thinks or feels
+                matters, is universal. Your words awaits.</p>
+        <a role="button" class="btn btn-primary btn-lg" href="{% url 'createtodo' %}">Start</a>
+        </div>
+    </div>
+
+<! Divide the code >
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            {% if todos %}
+                 <h2>{{ todos.count }} total writing{{ todos.count|pluralize }}</h2>
+            {% else %}
+                           <h1>Be the first to start writing</h1>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+        {% if todos %}
+            <div class="list-group">
+                {% for todo in todos %}
+                    <a href="{% url 'justread' todo.id %}" class="list-group-item list-group-item-action{% if todo.important %} list-group-item-danger{% endif %}"><b>{{ todo.title }}</b>{% if todo.memo %} - {{ todo.memo|truncatechars:30 }}{% endif %}</a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center">
+                <h2>Nothing here! Inspire others by your words.</h2>
+            <br>
+            <a role="button" class="btn btn-primary" href="{% url 'createtodo' %}">New Todo</a>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
